@@ -1,6 +1,7 @@
 .QuizList {
   display: flex;
   justify-content: center;
+  color: #eee;
   padding-top: 100px;
   flex-grow: 1;
   width: 100%;
@@ -17,7 +18,7 @@
 }
 
 .QuizList ul {
-  list-style: none;
+  /* list-style: none; */
   padding: 0;
   margin: 0;
   display: flex;
@@ -36,4 +37,9 @@
 
 .QuizList li a:hover {
   color: #362f54;
+}
+
+.QuizList a {
+  color: #eee;
+  text-align: center;
 }

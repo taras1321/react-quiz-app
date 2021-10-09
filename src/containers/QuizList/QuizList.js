@@ -25,13 +25,14 @@ class QuizList extends Component {
       const response = await axios.get('/quizes.json')
 
       const quizes = []
-      Object.keys(response.data).forEach((key, index) => {
-        quizes.push({
-          id: key,
-          name: `Тест ${index + 1}`,
+      if (response.data) {
+        Object.keys(response.data).forEach((key, index) => {
+          quizes.push({
+            id: key,
+            name: response.data[key][0].quizName,
+          })
         })
-      })
-
+      }
       this.setState({ quizes, loading: false })
     } catch (e) {
       console.log(e)
@@ -45,8 +46,13 @@ class QuizList extends Component {
           <h1>Список тестів</h1>
           {this.state.loading ? (
             <Loader />
+          ) : !this.state.quizes.length ? (
+            <div>
+              Список порожній &nbsp;
+              <NavLink to="/quiz-creator">Створити тест</NavLink>
+            </div>
           ) : (
-            <ul>{this.renderQuizes()}</ul>
+            <ol>{this.renderQuizes()}</ol>
           )}
         </div>
       </div>
